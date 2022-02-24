@@ -67,30 +67,48 @@ namespace Task
             bool check = false;
             bool check1 = false;
             bool check2 = false;
+            bool check3 = false;
             bool final = false;
             int SpaceIndex = 0;
 
-            if (full.Contains(' '))
-            {
-                check = true;
-
-            }
             for (int i = 3; i < full.Length - 3; i++)
             {
                 if (full[i] == ' ')
                 {
                     SpaceIndex = i;
+                    check = true;
                 }
             }
-            if (Char.IsUpper(full[0]) && Char.IsLetter(full[1]) && Char.IsLetter(full[2]))
+            for (int i = 1; i < SpaceIndex; i++)
             {
-                check1 = true;
+                if (!Char.IsLower(full[i]))
+                {
+                    check1 = false;
+                    break;
+                }
+                else
+                {
+                    check1 = true;
+                }                
             }
-            if (Char.IsUpper(full[SpaceIndex + 1]) && Char.IsLetter(full[full.Length - 1]) && Char.IsLetter(full[full.Length - 2]) && Char.IsLetter(full[full.Length - 3]))
+            for (int i = SpaceIndex + 2; i < full.Length; i++)
             {
-                check2 = true;
+                if (!Char.IsLower(full[i]))
+                {
+                    check2 = false;
+                    break;
+                }
+                else
+                {
+                    check2 = true;
+                }
             }
-            if (check == true && check1 == true && check2 == true)
+            if (Char.IsUpper(full[0]) && Char.IsLetter(full[1]) && Char.IsLetter(full[2])&& Char.IsUpper(full[SpaceIndex + 1])&& Char.IsLetter(full[full.Length - 1]) && Char.IsLetter(full[full.Length - 2]))
+            {
+                check3 = true;
+            }
+                        
+            if (check == true && check1 == true && check2 == true&&check3==true)
             {
                 final = true;
             }
